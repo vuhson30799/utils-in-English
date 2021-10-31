@@ -10,9 +10,9 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TableGenerator {
-	private static final String LINE_RESULT_FORMAT = "%.2f | %s";
-	public Map<Float, List<String>> generateStudentWrongAnswers(String filePath) throws IOException {
-		Map<Float, List<String>> result = new HashMap<>();
+	private static final String LINE_RESULT_FORMAT = "%s | %s";
+	public Map<String, List<String>> generateStudentWrongAnswers(String filePath) throws IOException {
+		Map<String, List<String>> result = new HashMap<>();
 		Files.readAllLines(Paths.get(filePath))
 				.forEach(generatorRecords(result));
 		return result.entrySet()
@@ -21,7 +21,7 @@ public class TableGenerator {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
 
-	public void putResultIntoFile(Map<Float, List<String>> result, String filePath) throws IOException {
+	public void putResultIntoFile(Map<String, List<String>> result, String filePath) throws IOException {
 		BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath), StandardCharsets.UTF_8);
 		result.forEach((key, value) -> {
 			String line = String.format(LINE_RESULT_FORMAT, key, value);
@@ -37,7 +37,7 @@ public class TableGenerator {
 		writer.close();
 	}
 
-	private Consumer<String> generatorRecords(Map<Float, List<String>> result) {
+	private Consumer<String> generatorRecords(Map<String, List<String>> result) {
 		return line -> {
 			String[] params = line.split("\\|");
 			if (params.length != 2) {
@@ -47,13 +47,12 @@ public class TableGenerator {
 			String[] questions = params[1].trim().split(",");
 			Arrays.stream(questions)
 					.forEach(question -> {
-						Float questionNumber = Float.valueOf(question);
-						if (result.containsKey(questionNumber)) {
-							result.get(questionNumber).add(student);
+						if (result.containsKey(question)) {
+							result.get(question).add(student);
 						} else {
 							List<String> students = new ArrayList<>();
 							students.add(student);
-							result.put(questionNumber, students);
+							result.put(question, students);
 						}
 					});
 		};

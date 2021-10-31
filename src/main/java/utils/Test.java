@@ -3,7 +3,6 @@ package utils;
 import utils.service.TableGenerator;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Test {
 	private static final TableGenerator tableGenerator = new TableGenerator();
