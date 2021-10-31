@@ -46,6 +46,7 @@ public class TableGenerator {
 			String student = params[0];
 			String[] questions = params[1].trim().split(",");
 			Arrays.stream(questions)
+					.map(String::trim)
 					.forEach(question -> {
 						if (result.containsKey(question)) {
 							result.get(question).add(student);
