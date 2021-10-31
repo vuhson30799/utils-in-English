@@ -17,8 +17,23 @@ public class TableGenerator {
 				.forEach(generatorRecords(result));
 		return result.entrySet()
 				.stream()
-				.sorted(Map.Entry.comparingByKey())
+				.sorted(getEntryComparator())
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+	}
+
+	private Comparator<Map.Entry<String, List<String>>> getEntryComparator() {
+		return (question1, question2) -> {
+			float questionNumber1 = Float.parseFloat(question1.getKey());
+			float questionNumber2 = Float.parseFloat(question2.getKey());
+			if (questionNumber1 > questionNumber2) {
+				return 1;
+			}
+			if (questionNumber1 < questionNumber2){
+				return -1;
+			}
+
+			return question1.getKey().compareTo(question2.getKey());
+		};
 	}
 
 	public void putResultIntoFile(Map<String, List<String>> result, String filePath) throws IOException {
