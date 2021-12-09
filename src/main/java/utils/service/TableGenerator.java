@@ -1,5 +1,8 @@
 package utils.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +13,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TableGenerator {
+	private static final Logger logger = LoggerFactory.getLogger(TableGenerator.class);
 	private static final String LINE_RESULT_FORMAT = "%s | %s";
 	public Map<String, List<String>> generateStudentWrongAnswers(String filePath) throws IOException {
 		Map<String, List<String>> result = new HashMap<>();
@@ -23,15 +27,28 @@ public class TableGenerator {
 
 	private Comparator<Map.Entry<String, List<String>>> getEntryComparator() {
 		return (question1, question2) -> {
-			float questionNumber1 = Float.parseFloat(question1.getKey());
-			float questionNumber2 = Float.parseFloat(question2.getKey());
+			float questionNumber1;
+			float questionNumber2;
+			try {
+				questionNumber1 = Float.parseFloat(question1.getKey());
+			} catch (NumberFormatException e) {
+				logger.info(String.format("Format is wrong on student: %s", question1.getValue()));
+				return -1;
+			}
+
+			try {
+				questionNumber2 = Float.parseFloat(question2.getKey());
+			} catch (NumberFormatException e) {
+				logger.info(String.format("Format is wrong on student: %s", question2.getValue()));
+				return 1;
+			}
+
 			if (questionNumber1 > questionNumber2) {
 				return 1;
 			}
 			if (questionNumber1 < questionNumber2){
 				return -1;
 			}
-
 			return question1.getKey().compareTo(question2.getKey());
 		};
 	}

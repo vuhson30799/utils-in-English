@@ -1,3 +1,6 @@
+: | [thảo nguyên ]
+5.4. | [ngân ]
+ | [thảo ]
 2.1 | [thanh ]
 2.10 | [lam ]
 2.2 | [trâm ]
@@ -29,5 +32,5 @@
 5.1 | [linh , Vân , trâm , Hoa , trang , nhi lê , khuyên , thảo nguyên , trung , toàn , thảo , phương nguyên , hà , ngân , thanh , thọ , kim ngọc , hồng nhi , lam , thục nhi ]
 5.2 | [trâm , khuyên , thảo nguyên , thọ ]
 5.3 | [trâm , nhi lê , khuyên , thảo nguyên , hà , thanh ]
-5.4 | [trâm , trang , khuyên , thảo nguyên , trung , toàn , phương nguyên , hà , ngân , trinh , thanh , thọ , kim ngọc , hồng nhi , lam , hoàng ngọc , thục nhi ]
+5.4 | [trâm , trang , khuyên , thảo nguyên , trung , toàn , phương nguyên , hà , trinh , thanh , thọ , kim ngọc , hồng nhi , lam , hoàng ngọc , thục nhi ]
 5.5 | [khuyên , thọ , thục nhi , thục nhi ]
