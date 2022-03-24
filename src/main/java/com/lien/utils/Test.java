@@ -1,6 +1,6 @@
-package utils;
+package com.lien.utils;
 
-import utils.service.TableGenerator;
+import com.lien.utils.service.TableGenerator;
 
 import java.io.IOException;
 

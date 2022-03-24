@@ -1,4 +1,4 @@
-package test;
+package com.lien.test;
 
 public enum Type {
 	ADV("(adv)"),

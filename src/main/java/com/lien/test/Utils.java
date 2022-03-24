@@ -1,4 +1,4 @@
-package test;
+package com.lien.test;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,7 +18,7 @@ public class Utils {
 
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Let's input file name (file should be put in resources folder):");
+		logger.info("Let's input file name (file should be put in resources folder):");
 		String fileName = scanner.nextLine();
 		String filePath = String.format(FILE_PATH_PATTERN, fileName);
 		printMenu();
@@ -38,15 +38,15 @@ public class Utils {
 		}
 
 		logger.info("=========RESULT=========");
-		results.forEach(System.out::println);
+		results.forEach(logger::info);
 	}
 
 	private static void printMenu() {
-		System.out.println("Menu: ");
-		System.out.println("0. Exit");
-		System.out.println("1. Handle file containing tabs");
-		System.out.println("2. Handle file containing colon");
-		System.out.println("3. Handle file to generate table of the people who get wrong answer in question");
+		logger.info("Menu: ");
+		logger.info("0. Exit");
+		logger.info("1. Handle file containing tabs");
+		logger.info("2. Handle file containing colon");
+		logger.info("3. Handle file to generate table of the people who get wrong answer in question");
 	}
 
 	private static List<String> handleFileWithColon(String filePath) throws IOException {
